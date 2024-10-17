@@ -14,7 +14,7 @@ def merge_i18n_chunks(output_file='./build/fr.json', chunk_pattern=r'default-\d+
         for chunk_file in chunk_files:
             with open(os.path.join('build', chunk_file), 'r', encoding='utf-8') as file:
                 # Skip the first line as it's the prompt added during splitting
-                output.writelines(file.readlines())
+                output.writelines(["\n"]+file.readlines())
 
     # Delete the chunk files after merging
     for chunk_file in chunk_files:
