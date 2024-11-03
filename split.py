@@ -15,7 +15,7 @@ def split_i18n_file(input_file, source_language, target_language, lines_per_file
     for piece_number in range(total_pieces):
         start_line = piece_number * lines_per_file
         end_line = start_line + lines_per_file
-        piece_content = [f"translate the entire i18n file i'm giving you, make sure you translate it all from {source_language} to {target_language}:\n"] +['"']+lines[start_line:end_line]+['"']
+        piece_content = [f"make a new canvas: translate the entire i18n file i'm giving you, make sure you translate it all from {source_language} to {target_language}, remove all comments,"+"never remove or add any '{ or } or remove any , (commas)' unless they were already present in the original text! Keep the same json form as the original text at all costs"+"\n"] +['"']+lines[start_line:end_line]+['"']
 
         piece_filename = f"./build/{original_filename}-{piece_number + 1}.txt"
         with open(piece_filename, 'w', encoding='utf-8') as piece_file:
