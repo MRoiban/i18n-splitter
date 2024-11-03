@@ -2,12 +2,12 @@ import os
 import re
 import argparse
 
-def merge_i18n_chunks(output_file='./build/fr.json', chunk_pattern=r'default-\d+\.txt'):
+def merge_i18n_chunks(output_file='./build/fr.json', chunk_pattern=r'output_\d+\.txt'):
     # Find all files that match the chunk pattern inside the build folder
     chunk_files = [f for f in os.listdir('build') if re.match(chunk_pattern, f)]
     
     # Sort chunk files by their numeric suffix
-    chunk_files.sort(key=lambda x: int(re.search(r'-(\d+)\.txt', x).group(1)))
+    chunk_files.sort(key=lambda x: int(re.search(r'_(\d+)\.txt', x).group(1)))
 
     # Merge contents of all chunk files
     with open(output_file, 'w', encoding='utf-8') as output:
